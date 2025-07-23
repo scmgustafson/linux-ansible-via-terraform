@@ -8,6 +8,21 @@ It provisions 3 nodes, 1 Ansible control node and 2 managed nodes, to showcase t
 
 For easier demonstration, Terraform will SCP the Ansible configuration to the control node at runtime.
 
+```mermaid
+    flowchart TD
+    subgraph Infrastructure
+        TF[Terraform]
+        TF -->|Creates + SSH| ControlNode[Control Node - Ansible]
+        TF -->|Creates| ManagedNode1[Managed Node 1 - Nginx]
+        TF -->|Creates| ManagedNode2[Managed Node 2 - Apache]
+    end
+
+    subgraph ControlNode[Control Node - Ansible]
+        ControlNode -->|SSH + Playbooks| ManagedNode1
+        ControlNode -->|SSH + Playbooks| ManagedNode2
+    end
+```
+
 ## Requirements/Dependencies:
 
 To run this project, you will need:
