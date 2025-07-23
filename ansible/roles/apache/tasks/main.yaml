@@ -1,0 +1,15 @@
+# roles/apache/tasks/main.yaml
+
+# Install and Start Apache
+- name: Install Apache
+  ansible.builtin.yum:
+    name: "httpd"
+    state: present
+  tags: apache
+
+- name: Start Apache
+  ansible.builtin.service:
+    name: httpd
+    state: started
+    enabled: true
+  tags: apache

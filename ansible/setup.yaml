@@ -5,9 +5,14 @@
   roles:
     - basic
     - nginx
-# - name: Setup Apache host
-#   # Necessary due to AL2023 restriction on root user ssh
-#   become: true
-#   hosts: apache
-#   roles:
-#     - basic
+
+- name: Setup Apache host
+  # Necessary due to AL2023 restriction on root user ssh
+  become: true
+  hosts: apache
+  vars:
+    webpage_destination: /var/www/html
+  roles:
+    - basic
+    - apache
+    - webpage

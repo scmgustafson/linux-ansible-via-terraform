@@ -19,4 +19,4 @@
     dest: "/usr/share/nginx/html/index.html"
     src: "/etc/ansible/roles/nginx/files/index.html"
     force: true
-  tags: webpages
+  tags: nginx

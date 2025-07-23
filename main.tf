@@ -24,7 +24,7 @@ provider "aws" {
   region = var.aws_region
 }
 
-# Generate a throwaway keypair to be used for communication between Ansible and the managed node
+# Generate a throwaway keypair to be used for communication between Ansible, local, and the managed nodes
 resource "tls_private_key" "demo_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
@@ -77,6 +77,7 @@ data "aws_security_group" "default" {
   vpc_id = data.aws_vpc.default.id
 }
 
+# Node Configuration
 # Provision the nodes starting with the Ansible control node
 data "aws_ami" "latest_amazon_linux" {
   most_recent = true
@@ -129,8 +130,7 @@ resource "aws_instance" "control_node" {
   }
 }
 
-# Ansible Configuration Setup
-
+# Ansible Configuration
 # Templatize the 'hosts' file using new managed_node1 DNS on each run
 resource "local_file" "ansible_hosts" {
   depends_on = [aws_instance.managed_node1, aws_instance.managed_node2]
@@ -205,5 +205,3 @@ resource "null_resource" "ansible_run" {
     ]
   }
 }
-
-

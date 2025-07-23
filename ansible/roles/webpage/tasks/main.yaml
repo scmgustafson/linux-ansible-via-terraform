@@ -1,0 +1,8 @@
+# roles/webpage/tasks/main.yaml
+
+# To be used with Apache server
+- name: Unpack Webpage Tarball
+  ansible.builtin.unarchive:
+    src: "/etc/ansible/roles/webpage/files/webpage.tar.gz"
+    dest: "{{ webpage_destination }}"
+  tags: webpage

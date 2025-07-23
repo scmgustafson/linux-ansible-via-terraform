@@ -1,12 +1,12 @@
-# Ansible on latest Amazon Linux via Terraform Demo
+# Bootstrapping Ansible on latest Amazon Linux via Terraform
 
 ## Description
 
-This project aims to demo bootstrapping a functional Ansible setup on AWS with Terraform.
-It serves to showcase the necessary Terraform configurations to create the different nodes and the usage of Ansible to manage them.
+This project demonstrates how to bootstrap a functional Ansible setup on AWS with Terraform.
 
-In this example, we will create 3 nodes. 1 Ansible control node and 2 managed nodes.
-Ansible will be used to provision and deploy a simple web page on the 2 managed nodes using Apache and Nginx. Additionally, the system packages will be updated and a sample user will be created.
+It provisions 3 nodes, 1 Ansible control node and 2 managed nodes, to showcase the infrastructure creation via Terraform and the config management via Ansible.
+
+Ansible will provision and deploy a simple web page on the 2 managed nodes using Apache and Nginx.
 
 ## Requirements/Dependencies:
 
@@ -14,7 +14,7 @@ To run this project, you will need:
 
 - Terraform version >= 1.12
 - Current latest provider versions of AWS, TLS, Local, and Null (automatically installed on `terraform init`)
-- AWS CLI and/or AWS credentials ready for Terraform to use
+- AWS CLI configured with valid credentials
 
 ## Instructions for Use
 
@@ -22,15 +22,8 @@ _Note: This project will create and utilize an ephemeral SSH key in your local d
 
 Initialize and apply Terraform configuration
 
-1. `terraform init`
-2. `terraform apply`
-
-## How to Test
-
-Test from Terraform via remote-exec:
-
-1. Uncomment the `"null_resource" "ansible_test"` resource block at the end of main.tf
-2. Run a `terraform apply` and allow the new null_resource to create
-3. Check the output for the stdout of an `ansible ping` command (you should see "web1 | SUCCESS ...")
-
-View the content of the 2 managed web servers:
+1. Clone the repository
+2. Run a `terraform init` to initialize the working directory
+3. Run a `terraform apply` to provision the infra
+4. Watch Terraform and Ansible do their thing in the console
+5. Visit the webserver addresses that are given in the terraform output. Enjoy :)
