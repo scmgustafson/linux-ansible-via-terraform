@@ -1,2 +1,5 @@
-[webservers]
-web ansible_host=${ansible_managed_host_dns} ansible_user=ec2-user ansible_ssh_private_key_file=/root/.ssh/id_rsa
+[nginx]
+web1 ansible_host=${ansible_managed_host1_dns} ansible_user=ec2-user ansible_ssh_private_key_file=/root/.ssh/id_rsa
+
+[apache]
+web2 ansible_host=${ansible_managed_host2_dns} ansible_user=ec2-user ansible_ssh_private_key_file=/root/.ssh/id_rsa

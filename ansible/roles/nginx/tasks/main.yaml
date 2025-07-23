@@ -1,0 +1,22 @@
+# roles/nginx/tasks/main.yaml
+
+# Install Nginx and serve a simple HTML page
+- name: Install Nginx
+  ansible.builtin.yum:
+    name: "nginx"
+    state: present
+  tags: nginx
+
+- name: Start Nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true
+  tags: nginx
+
+- name: Copy sample index.html to Nginx
+  ansible.builtin.copy:
+    dest: "/usr/share/nginx/html/index.html"
+    src: "/etc/ansible/roles/nginx/files/index.html"
+    force: true
+  tags: webpages

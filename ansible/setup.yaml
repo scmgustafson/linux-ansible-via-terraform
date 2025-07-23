@@ -1,0 +1,13 @@
+- name: Setup Nginx host
+  # Necessary due to AL2023 restriction on root user ssh
+  become: true
+  hosts: nginx
+  roles:
+    - basic
+    - nginx
+# - name: Setup Apache host
+#   # Necessary due to AL2023 restriction on root user ssh
+#   become: true
+#   hosts: apache
+#   roles:
+#     - basic

@@ -1,0 +1,39 @@
+# roles/basic/tasks/main.yaml
+
+# Manage packages
+- name: Update all Yum packages
+  ansible.builtin.yum:
+    name: "*"
+    state: latest
+  tags: update
+
+- name: Install necessary utilities
+  ansible.builtin.yum:
+    name: "git,wget,vim,tree,jq"
+    state: present
+  tags: packages
+
+- name: Install network tools
+  ansible.builtin.yum:
+    name: "dnf,bind-utils,iputils,net-tools,telnet"
+    state: present
+  tags: packages
+
+- name: Install security tools
+  ansible.builtin.yum:
+    name: "fail2ban"
+    state: present
+  tags: packages
+
+- name: Start fail2ban
+  ansible.builtin.service:
+    name: fail2ban
+    state: started
+    enabled: true
+  tags: packages
+
+- name: Create user
+  ansible.builtin.user:
+    name: demo
+    create_home: yes
+  tags: user
