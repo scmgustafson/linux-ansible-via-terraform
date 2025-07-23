@@ -4,9 +4,9 @@
 
 This project demonstrates how to bootstrap a functional Ansible setup on AWS with Terraform.
 
-It provisions 3 nodes, 1 Ansible control node and 2 managed nodes, to showcase the infrastructure creation via Terraform and the config management via Ansible.
+It provisions 3 nodes, 1 Ansible control node and 2 managed nodes, to showcase the infrastructure creation via Terraform and the config management via Ansible. Ansible will provision and deploy a sample web page on the 2 managed nodes using Apache and Nginx.
 
-Ansible will provision and deploy a simple web page on the 2 managed nodes using Apache and Nginx.
+For easier demonstration, Terraform will SCP the Ansible configuration to the control node at runtime.
 
 ## Requirements/Dependencies:
 
